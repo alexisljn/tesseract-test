@@ -1,0 +1,33 @@
+<html>
+<head></head>
+<body>
+<h1>Upload</h1>
+<div>
+    <input type="file">
+</div>
+<div>
+    <button>Valider</button>
+</div>
+<div id="result"></div>
+<script type="text/javascript">
+    const buttonElt = document.querySelector('button');
+    const fileInput = document.querySelector('input');
+
+    buttonElt.onclick = async (e) => {
+        console.log(fileInput.files[0]);
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded')
+
+        console.log("base64", window.btoa(fileInput.files[0]));
+
+        const response = await fetch('/detect', {headers, method: 'POST', body: fileInput.files[0]});
+
+    }
+
+</script>
+</body>
+</html>

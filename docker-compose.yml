@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  node:
+    image: node:14
+    working_dir: /home/node/app
+    volumes:
+    - .:/home/node/app
+    command: npm start
+    ports:
+    - "3000:3000"
