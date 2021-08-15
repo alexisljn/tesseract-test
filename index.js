@@ -6,11 +6,13 @@ const fs = require('fs');
     // console.log("directoryContent", directoryContent);
 
     for (const file of directoryContent) {
-        const result = await Tesseract.recognize(`./src/${file}`, 'fra', {logger: m => console.log(m)});
-        fs.appendFile('questions.txt', result.data.text, function (err) {
-            if (err) throw err;
-            console.log('Saved!');
-        })
+        if (file !== ".gitkeep") {
+            const result = await Tesseract.recognize(`./src/${file}`, 'fra', {logger: m => console.log(m)});
+            fs.appendFile('questions.txt', result.data.text, function (err) {
+                if (err) throw err;
+                console.log('Saved!');
+            })
+        }
     }
 
 })();
